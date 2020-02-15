@@ -8,6 +8,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Run install
+        run: |
+          make install
       - name: Run linter
         run: |
           make lint
