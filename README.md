@@ -3,4 +3,4 @@
 [![Node CI](https://github.com/iamsorryprincess/frontend-project-lvl1/workflows/Node%20CI/badge.svg)](https://github.com/iamsorryprincess/frontend-project-lvl1/actions)
 
 
-https://asciinema.org/a/h8CQAnMDRdyu9j1xB31IZD1Tf
+[![asciicast](https://asciinema.org/a/14.png)](https://asciinema.org/a/h8CQAnMDRdyu9j1xB31IZD1Tf)
