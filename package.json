@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/iamsorryprincess/frontend-project-lvl1#readme",
   "dependencies": {
+    "eslint": "^6.8.0",
     "readline-sync": "^1.4.10"
   }
 }
