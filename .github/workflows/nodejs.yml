@@ -6,9 +6,8 @@ on:
 
 jobs:
   build:
-    name: Lint
     runs-on: ubuntu-latest
     steps:
-        name: Using eslint
+      - name: Run linter
         run: |
           make lint
