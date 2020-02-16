@@ -1,6 +1,7 @@
 import readlineSync from 'readline-sync';
 import * as even from './games/even.js';
 import * as calc from './games/calc.js';
+import * as gcd from './games/gcd.js';
 
 const greetingsText = 'Welcome to the Brain Games!';
 const questionNameText = 'May I have your name? ';
@@ -56,4 +57,10 @@ export const calcGameScenario = () => {
   showGreetings();
   const userName = askName();
   playGame(calc, userName);
+};
+
+export const gcdGameScenario = () => {
+  showGreetings();
+  const userName = askName();
+  playGame(gcd, userName);
 };
