@@ -2,7 +2,7 @@ let result;
 
 const random = (max) => Math.floor(Math.random() * Math.floor(max));
 
-const action = (num1, num2) => {
+const findGcd = (num1, num2) => {
   const q = Math.floor(num1 / num2);
   const r = num1 - num2 * q;
 
@@ -37,9 +37,9 @@ export const getCondition = () => {
   const num2 = random(101);
 
   if (num1 > num2) {
-    result = action(num1, num2);
+    result = findGcd(num1, num2);
   } else {
-    result = action(num2, num1);
+    result = findGcd(num2, num1);
   }
 
   return `${num1} ${num2}`;

@@ -3,6 +3,7 @@ import * as even from './games/even.js';
 import * as calc from './games/calc.js';
 import * as gcd from './games/gcd.js';
 import * as progression from './games/progression.js';
+import * as prime from './games/prime.js';
 
 const greetingsText = 'Welcome to the Brain Games!';
 const questionNameText = 'May I have your name? ';
@@ -70,4 +71,10 @@ export const progressionGameScenario = () => {
   showGreetings();
   const userName = askName();
   playGame(progression, userName);
+};
+
+export const primeGameScenario = () => {
+  showGreetings();
+  const userName = askName();
+  playGame(prime, userName);
 };
