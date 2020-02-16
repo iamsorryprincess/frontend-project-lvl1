@@ -1,8 +1,9 @@
 import readlineSync from 'readline-sync';
+import * as even from './games/even.js';
+import * as calc from './games/calc.js';
 
 const greetingsText = 'Welcome to the Brain Games!';
 const questionNameText = 'May I have your name? ';
-const evenStartText = 'Answer "yes" if the number is even, otherwise answer "no".';
 const questionNumText = 'Question: ';
 const answerText = 'Your answer: ';
 const correctAnswer = 'Correct!';
@@ -13,43 +14,19 @@ const showGreetings = () => {
   console.log(greetingsText);
 };
 
-const checkAnswer = (number, answer) => {
-  const result = number % 2 === 0;
-
-  switch (answer) {
-    case 'yes':
-      if (result) {
-        return true;
-      }
-      return false;
-
-    case 'no':
-      if (!result) {
-        return true;
-      }
-      return false;
-
-    default:
-      return false;
-  }
-};
-
-const getAnswer = (answer, oppositeAnswer) => `"${answer}" is wrong answer ;(. Correct answer was "${oppositeAnswer}".`;
-
-const evenGame = (userName) => {
-  console.log(evenStartText);
+const playGame = (game, userName) => {
+  console.log(game.conditionText);
 
   for (let i = 1; i <= attemptsCount; i++) {
-    const number = Math.floor(Math.random() * Math.floor(1001));
-    console.log(`${questionNumText}${number}`);
+    console.log(`${questionNumText}${game.getCondition()}`);
     const answer = readlineSync.question(answerText);
+    const result = game.checkCondition();
+    const isTrue = answer === result;
 
-    if (checkAnswer(number, answer)) {
+    if (isTrue) {
       console.log(correctAnswer);
-      continue;
     } else {
-      const result = answer === 'yes' ? getAnswer('yes', 'no') : getAnswer('no', 'yes');
-      console.log(result);
+      console.log(`"${answer}" is wrong answer ;(. Correct answer was "${result}".`);
       console.log(`Let's try again, ${userName}!`);
       return;
     }
@@ -58,21 +35,25 @@ const evenGame = (userName) => {
   console.log(`Congratulations, ${userName}!`);
 };
 
-const askName = (isEven) => {
+const askName = () => {
   const userName = readlineSync.question(questionNameText);
   console.log(`Hello, ${userName}!`);
-
-  if (isEven) {
-    evenGame(userName);
-  }
+  return userName;
 };
 
 export const standardScenario = () => {
   showGreetings();
-  askName(false);
+  askName();
 };
 
 export const evenGameScenario = () => {
   showGreetings();
-  askName(true);
+  const userName = askName();
+  playGame(even, userName);
+};
+
+export const calcGameScenario = () => {
+  showGreetings();
+  const userName = askName();
+  playGame(calc, userName);
 };
