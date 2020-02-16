@@ -1,6 +1,7 @@
 const positive = 'yes';
 const negative = 'no';
 
+const random = (max) => Math.floor(Math.random() * Math.floor(max));
 let number;
 
 const isPrime = (num) => {
@@ -22,6 +23,6 @@ export const conditionText = '"yes" if given number is prime. Otherwise answer "
 export const checkCondition = () => (isPrime(number) ? positive : negative);
 
 export const getCondition = () => {
-  number = Math.floor(Math.random() * Math.floor(1001));
+  number = random(1001);
   return number;
 };
