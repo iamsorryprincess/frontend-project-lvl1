@@ -1,13 +1,14 @@
+import { play, random } from '../index.js';
+
 const positive = 'yes';
 const negative = 'no';
+const description = 'Answer "yes" if the number is even, otherwise answer "no".';
 
-let number;
-
-export const conditionText = 'Answer "yes" if the number is even, otherwise answer "no".';
-
-export const checkCondition = () => (number % 2 === 0 ? positive : negative);
-
-export const getCondition = () => {
-  number = Math.floor(Math.random() * Math.floor(1001));
-  return number;
+const getCondition = () => {
+  const number = random(1001);
+  return { condition: number, result: number % 2 === 0 ? positive : negative };
 };
+
+const start = () => play(description, getCondition);
+
+export default start;

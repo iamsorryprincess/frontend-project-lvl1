@@ -1,41 +1,35 @@
-import * as game from './game.js';
-import * as even from './games/even.js';
-import * as calc from './games/calc.js';
-import * as gcd from './games/gcd.js';
-import * as progression from './games/progression.js';
-import * as prime from './games/prime.js';
+import readlineSync from 'readline-sync';
 
-export const standardScenario = () => {
-  game.showGreetings();
-  game.askName();
-};
+const greetingsText = 'Welcome to the Brain Games!';
+const questionNameText = 'May I have your name? ';
+const questionNumText = 'Question: ';
+const answerText = 'Your answer: ';
+const correctAnswer = 'Correct!';
+const attemptsCount = 3;
 
-export const evenGameScenario = () => {
-  game.showGreetings();
-  const userName = game.askName();
-  game.play(even, userName);
-};
+export const random = (max) => Math.floor(Math.random() * Math.floor(max));
 
-export const calcGameScenario = () => {
-  game.showGreetings();
-  const userName = game.askName();
-  game.play(calc, userName);
-};
+export const play = (description, conditionCallback) => {
+  console.log(greetingsText);
+  const userName = readlineSync.question(questionNameText);
+  console.log(`Hello, ${userName}!`);
+  console.log(description);
 
-export const gcdGameScenario = () => {
-  game.showGreetings();
-  const userName = game.askName();
-  game.play(gcd, userName);
-};
+  for (let i = 1; i <= attemptsCount; i++) {
+    const gameResult = conditionCallback();
+    console.log(`${questionNumText}${gameResult.condition}`);
+    const answer = readlineSync.question(answerText);
+    const { result } = gameResult;
+    const isTrue = answer === result;
 
-export const progressionGameScenario = () => {
-  game.showGreetings();
-  const userName = game.askName();
-  game.play(progression, userName);
-};
+    if (isTrue) {
+      console.log(correctAnswer);
+    } else {
+      console.log(`"${answer}" is wrong answer ;(. Correct answer was "${result}".`);
+      console.log(`Let's try again, ${userName}!`);
+      return;
+    }
+  }
 
-export const primeGameScenario = () => {
-  game.showGreetings();
-  const userName = game.askName();
-  game.play(prime, userName);
+  console.log(`Congratulations, ${userName}!`);
 };

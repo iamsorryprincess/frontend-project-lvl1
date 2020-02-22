@@ -1,35 +1,29 @@
+import { play, random } from '../index.js';
+
 const countProgression = 10;
 const hidingSign = '..';
+const description = 'What number is missing in the progression?';
 
-const random = (max) => Math.floor(Math.random() * Math.floor(max));
-let result;
-
-export const conditionText = 'What number is missing in the progression?';
-
-export const checkCondition = () => result.toString();
-
-export const getCondition = () => {
-  const start = random(26);
+const getCondition = () => {
+  const begin = random(26);
   const progress = random(14) + 1;
   const index = random(10);
-  let number = start;
-  let res = `${start}`;
+  const elements = [];
+  let result;
 
-  if (index === 0) {
-    res = hidingSign;
-    result = start;
-  }
-
-  for (let i = 1; i < countProgression; i++) {
-    number += progress;
-
+  for (let i = 0; i < countProgression; i++) {
+    const elem = begin + progress * i;
     if (i === index) {
-      result = number;
-      res += ` ${hidingSign}`;
+      elements.push(hidingSign);
+      result = elem;
     } else {
-      res += ` ${number}`;
+      elements.push(elem);
     }
   }
 
-  return res;
+  return { condition: elements.join(' '), result: result.toString() };
 };
+
+const start = () => play(description, getCondition);
+
+export default start;

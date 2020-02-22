@@ -1,6 +1,6 @@
-let result;
+import { play, random } from '../index.js';
 
-const random = (max) => Math.floor(Math.random() * Math.floor(max));
+const description = 'Find the greatest common divisor of given numbers.';
 
 const findGcd = (num1, num2) => {
   const q = Math.floor(num1 / num2);
@@ -28,19 +28,19 @@ const findGcd = (num1, num2) => {
   return res;
 };
 
-export const conditionText = 'Find the greatest common divisor of given numbers.';
-
-export const checkCondition = () => result.toString();
-
-export const getCondition = () => {
+const getCondition = () => {
   const num1 = random(101);
   const num2 = random(101);
-
+  let result;
   if (num1 > num2) {
     result = findGcd(num1, num2);
   } else {
     result = findGcd(num2, num1);
   }
 
-  return `${num1} ${num2}`;
+  return { condition: `${num1} ${num2}`, result: result.toString() };
 };
+
+const start = () => play(description, getCondition);
+
+export default start;

@@ -1,36 +1,35 @@
-let result;
+import { play, random } from '../index.js';
 
-const random = (max) => Math.floor(Math.random() * Math.floor(max));
+const operations = ['+', '-', '*'];
+const description = 'What is the result of the expression?';
 
-const action = (num1, num2) => {
-  const rand = random(3);
+const getCondition = () => {
+  const num1 = random(101);
+  const num2 = random(101);
+  let result;
 
-  switch (rand) {
-    case 0:
+  const operation = operations[random(operations.length)];
+
+  switch (operation) {
+    case '+':
       result = num1 + num2;
-      return `${num1} + ${num2}`;
+      break;
 
-    case 1:
+    case '-':
       result = num1 - num2;
-      return `${num1} - ${num2}`;
+      break;
 
-    case 2:
+    case '*':
       result = num1 * num2;
-      return `${num1} * ${num2}`;
+      break;
 
     default:
       break;
   }
 
-  return null;
+  return { condition: `${num1} ${operation} ${num2}`, result: result.toString() };
 };
 
-export const conditionText = 'What is the result of the expression?';
+const start = () => play(description, getCondition);
 
-export const checkCondition = () => result.toString();
-
-export const getCondition = () => {
-  const num1 = random(101);
-  const num2 = random(101);
-  return action(num1, num2);
-};
+export default start;

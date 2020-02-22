@@ -1,15 +1,15 @@
+import { play, random } from '../index.js';
+
 const positive = 'yes';
 const negative = 'no';
-
-const random = (max) => Math.floor(Math.random() * Math.floor(max));
-let number;
+const description = '"yes" if given number is prime. Otherwise answer "no".';
 
 const isPrime = (num) => {
-  if (num === 1 || num <= 0) {
+  if (num <= 1) {
     return false;
   }
 
-  for (let i = 2; i < num; i++) {
+  for (let i = 2; i < num / 2; i++) {
     if (num % i === 0) {
       return false;
     }
@@ -18,11 +18,11 @@ const isPrime = (num) => {
   return true;
 };
 
-export const conditionText = '"yes" if given number is prime. Otherwise answer "no".';
-
-export const checkCondition = () => (isPrime(number) ? positive : negative);
-
-export const getCondition = () => {
-  number = random(1001);
-  return number;
+const getCondition = () => {
+  const number = random(1001);
+  return { condition: number, result: isPrime(number) ? positive : negative };
 };
+
+const start = () => play(description, getCondition);
+
+export default start;
