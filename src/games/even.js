@@ -1,12 +1,14 @@
-import { play, random } from '../index.js';
+import play from '../index.js';
+import random from '../utils.js';
 
-const positive = 'yes';
-const negative = 'no';
+const positiveAnswer = 'yes';
+const negativeAnswer = 'no';
 const description = 'Answer "yes" if the number is even, otherwise answer "no".';
+const maxRange = 1001;
 
 const getCondition = () => {
-  const number = random(1001);
-  return { condition: number, result: number % 2 === 0 ? positive : negative };
+  const number = random(maxRange);
+  return { condition: number, result: number % 2 === 0 ? positiveAnswer : negativeAnswer };
 };
 
 const start = () => play(description, getCondition);

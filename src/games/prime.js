@@ -1,15 +1,17 @@
-import { play, random } from '../index.js';
+import play from '../index.js';
+import random from '../utils.js';
 
-const positive = 'yes';
-const negative = 'no';
+const positiveAnswer = 'yes';
+const negativeAnswer = 'no';
 const description = '"yes" if given number is prime. Otherwise answer "no".';
+const maxRange = 1001;
 
 const isPrime = (num) => {
   if (num <= 1) {
     return false;
   }
 
-  for (let i = 2; i < num / 2; i++) {
+  for (let i = 2; i < num / 2; i += 1) {
     if (num % i === 0) {
       return false;
     }
@@ -19,8 +21,8 @@ const isPrime = (num) => {
 };
 
 const getCondition = () => {
-  const number = random(1001);
-  return { condition: number, result: isPrime(number) ? positive : negative };
+  const number = random(maxRange);
+  return { condition: number, result: isPrime(number) ? positiveAnswer : negativeAnswer };
 };
 
 const start = () => play(description, getCondition);

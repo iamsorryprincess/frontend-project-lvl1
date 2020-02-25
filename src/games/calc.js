@@ -1,11 +1,13 @@
-import { play, random } from '../index.js';
+import play from '../index.js';
+import random from '../utils.js';
 
 const operations = ['+', '-', '*'];
 const description = 'What is the result of the expression?';
+const maxRange = 101;
 
 const getCondition = () => {
-  const num1 = random(101);
-  const num2 = random(101);
+  const num1 = random(maxRange);
+  const num2 = random(maxRange);
   let result;
 
   const operation = operations[random(operations.length)];
