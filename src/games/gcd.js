@@ -2,6 +2,7 @@ import play from '../index.js';
 import random from '../utils.js';
 
 const description = 'Find the greatest common divisor of given numbers.';
+const minRange = 0;
 const maxRange = 101;
 
 const findGcd = (num1, num2) => {
@@ -33,8 +34,8 @@ const findGcd = (num1, num2) => {
 };
 
 const getCondition = () => {
-  const num1 = random(maxRange);
-  const num2 = random(maxRange);
+  const num1 = random(minRange, maxRange);
+  const num2 = random(minRange, maxRange);
   const result = findGcd(num1, num2);
   return { condition: `${num1} ${num2}`, result: result.toString() };
 };

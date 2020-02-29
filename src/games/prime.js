@@ -4,6 +4,7 @@ import random from '../utils.js';
 const positiveAnswer = 'yes';
 const negativeAnswer = 'no';
 const description = '"yes" if given number is prime. Otherwise answer "no".';
+const minRange = 0;
 const maxRange = 1001;
 
 const isPrime = (num) => {
@@ -21,7 +22,7 @@ const isPrime = (num) => {
 };
 
 const getCondition = () => {
-  const number = random(maxRange);
+  const number = random(minRange, maxRange);
   return { condition: number, result: isPrime(number) ? positiveAnswer : negativeAnswer };
 };
 

@@ -4,10 +4,11 @@ import random from '../utils.js';
 const positiveAnswer = 'yes';
 const negativeAnswer = 'no';
 const description = 'Answer "yes" if the number is even, otherwise answer "no".';
+const minRange = 0;
 const maxRange = 1001;
 
 const getCondition = () => {
-  const number = random(maxRange);
+  const number = random(minRange, maxRange);
   return { condition: number, result: number % 2 === 0 ? positiveAnswer : negativeAnswer };
 };
 
